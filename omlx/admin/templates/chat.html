@@ -5129,6 +5129,14 @@
                 this.stopStatsPollingIfIdle();
                 this.ensureStatsPollingForCurrentChat();
             }
+            // Scroll after both reactive updates (messages.push + isStreaming=false) reach the DOM.
+            // $nextTick drains Alpine's microtask queue; rAF waits for Safari's async layout pass.
+            if (this.currentChatId === context.chatId && this.autoScrollEnabled) {
+                this.$nextTick(() => requestAnimationFrame(() => {
+                    const c = document.getElementById('messagesContainer');
+                    if (c) c.scrollTop = c.scrollHeight;
+                }));
+            }
         }
     },
 
