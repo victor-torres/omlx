@@ -82,7 +82,7 @@ def main() -> None:
         return vals
 
     def prompt(tokens: int) -> str:
-        body = "".join(f"[{i}] {PARA}" for i in range(max(1, tokens // 60)))
+        body = "".join(f"[{i}] {PARA}" for i in range(max(1, tokens // 40)))
         return f"(id {uuid.uuid4()})\n{body}\n\nSummarize the text above in one long paragraph."
 
     def chat(ctx: int) -> dict:
