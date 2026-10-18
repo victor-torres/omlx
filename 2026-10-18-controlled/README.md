@@ -11,3 +11,10 @@ before and after. 108 requests, no errors; texts identical across conditions per
 
 Checkpoints: Ornith 1.5 35B-A3B oQ4e (90.8% of tensor bytes 8-byte aligned) and oQ3e (6.6%).
 OS file cache warm, desktop apps and swap history uncontrolled.
+
+## Cold vs warm file cache (`cache.jsonl`, `run3.py`, `evict.py`)
+
+First complete request (load + 1,055→128) with one load per case, on the final commit (native loader
+for shards without aligned tensors). Cold: the model's pages are evicted with `msync(MS_INVALIDATE)`
+before the load and checked with `mincore`. Warm: the files are read just before the load.
+The `cache_state` field records residency before/after the eviction or warm-up.
