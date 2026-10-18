@@ -1,0 +1,122 @@
+[
+  {
+    "tier": "safe",
+    "response": {
+      "wall_s": 3.1488221250474453,
+      "id": "chatcmpl-08190553",
+      "object": "chat.completion",
+      "created": 1792344969,
+      "model": "Qwen3.5-0.8B",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Paris"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 1,
+        "total_tokens": 23,
+        "input_tokens": 22,
+        "output_tokens": 1,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "model_load_duration": 2.82,
+        "time_to_first_token": 0.12,
+        "total_time": 0.3,
+        "prompt_eval_duration": 0.12,
+        "generation_duration": 0.18,
+        "prompt_tokens_per_second": 180.91,
+        "generation_tokens_per_second": 5.52
+      }
+    }
+  },
+  {
+    "tier": "balanced",
+    "response": {
+      "wall_s": 2.373509000055492,
+      "id": "chatcmpl-b2b932f9",
+      "object": "chat.completion",
+      "created": 1792344980,
+      "model": "Qwen3.5-0.8B",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Paris"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 1,
+        "total_tokens": 23,
+        "input_tokens": 22,
+        "output_tokens": 1,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "model_load_duration": 2.2,
+        "time_to_first_token": 0.09,
+        "total_time": 0.17,
+        "prompt_eval_duration": 0.09,
+        "generation_duration": 0.08,
+        "prompt_tokens_per_second": 239.08,
+        "generation_tokens_per_second": 12.52
+      }
+    }
+  },
+  {
+    "tier": "aggressive",
+    "response": {
+      "wall_s": 2.3432111251167953,
+      "id": "chatcmpl-c54a0c57",
+      "object": "chat.completion",
+      "created": 1792344990,
+      "model": "Qwen3.5-0.8B",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Paris"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 1,
+        "total_tokens": 23,
+        "input_tokens": 22,
+        "output_tokens": 1,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "model_load_duration": 2.2,
+        "time_to_first_token": 0.06,
+        "total_time": 0.14,
+        "prompt_eval_duration": 0.06,
+        "generation_duration": 0.08,
+        "prompt_tokens_per_second": 359.28,
+        "generation_tokens_per_second": 12.9
+      }
+    }
+  }
+]

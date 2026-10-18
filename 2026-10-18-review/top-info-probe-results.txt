@@ -1,0 +1,12 @@
+Initial request {'prompt_tokens': 22, 'completion_tokens': 2, 'total_tokens': 24, 'input_tokens': 22, 'output_tokens': 2, 'prompt_tokens_details': {'cached_tokens': 0}, 'completion_tokens_details': {'reasoning_tokens': 0}, 'model_load_duration': 20.09, 'time_to_first_token': 0.87, 'total_time': 1.49, 'prompt_eval_duration': 0.87, 'generation_duration': 0.63, 'prompt_tokens_per_second': 25.42, 'generation_tokens_per_second': 3.19}
+ACTIVE TOP 0.00014454219490289688 20433764352
+TOP 7.595797069370747e-05 20433764352
+TOP 7.345806807279587e-05 20433764352
+MINCORE 0.48545883293263614 20433764352
+ 
+Active usage {'prompt_tokens': 28, 'completion_tokens': 512, 'total_tokens': 540, 'input_tokens': 28, 'output_tokens': 512, 'prompt_tokens_details': {'cached_tokens': 0}, 'completion_tokens_details': {'reasoning_tokens': 0}, 'time_to_first_token': 0.16, 'total_time': 8.73, 'prompt_eval_duration': 0.16, 'generation_duration': 8.57, 'prompt_tokens_per_second': 173.14, 'generation_tokens_per_second': 59.76}
+IDLE TOP 0.00014095893129706383 20313899008
+TOP 7.920805364847183e-05 20313899008
+TOP 7.554097101092339e-05 20313899008
+MINCORE 0.4776609579566866 20313899008
+ 

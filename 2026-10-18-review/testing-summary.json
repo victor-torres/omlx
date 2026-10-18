@@ -1,0 +1,27 @@
+{
+  "head": "9f3723391fde1aec197c0fd7398d6c93e71da09b",
+  "main": "165be1ff5933a020f2f5a7544e1e95a2797f777f",
+  "affected": "512 passed in7.43s",
+  "default": "pytest -n2:17242 passed,1127 skipped,9 failed,3 subtests passed in290.09s",
+  "main_reproduction": "same9 failed on clean main in7.16s; same rebuilt native binaries, no kernel source diff",
+  "unexpected_failures": [],
+  "baseline_failures": [
+    "tests/test_decode_fast_sdpa.py::test_matches_mx_fast[1-8-1-4-2048-192-128-dtype0]",
+    "tests/test_decode_fast_sdpa.py::test_matches_mx_fast[1-8-1-4-2048-256-256-dtype2]",
+    "tests/test_glm_moe_dsa_patch.py::test_glm_native_fused_kernels_match_reference",
+    "tests/test_qwen35_gdn_prework.py::test_qwen4_fused_verify_equals_per_op_verify_and_rollback[False-11-7-signatures0]",
+    "tests/test_qwen35_gdn_prework.py::test_qwen4_fused_verify_equals_per_op_verify_and_rollback[False-11-9-signatures1]",
+    "tests/test_qwen35_gdn_prework.py::test_qwen4_fused_verify_equals_per_op_verify_and_rollback[False-3-6-signatures0]",
+    "tests/test_qwen35_gdn_prework.py::test_qwen4_fused_verify_equals_per_op_verify_and_rollback[True-11-7-signatures0]",
+    "tests/test_qwen35_gdn_prework.py::test_qwen4_fused_verify_equals_per_op_verify_and_rollback[True-11-9-signatures1]",
+    "tests/test_qwen35_gdn_prework.py::test_qwen4_fused_verify_equals_per_op_verify_and_rollback[True-3-6-signatures0]"
+  ],
+  "web": "make web passed;12 direct JS tests plus network-auth JS via Python wrapper passed",
+  "format": "new loader/residency/test files Black and Ruff passed;git diff --check clean",
+  "github_ci": {
+    "head": "9f3723391fde1aec197c0fd7398d6c93e71da09b",
+    "state": "SUCCESS",
+    "check": "test (3.11)",
+    "url": "https://github.com/jundot/omlx/actions/runs/39150514921/job/117743056866"
+  }
+}

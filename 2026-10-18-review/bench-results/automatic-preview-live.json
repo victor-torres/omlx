@@ -1,0 +1,64 @@
+{
+  "t": 1792343152.043318,
+  "system": {
+    "total_memory_bytes": 34359738368,
+    "total_memory": "32.00 GB",
+    "auto_model_memory": "25.60 GB",
+    "available_memory_bytes": 1283391488,
+    "omlx_phys_footprint_bytes": 4353528248,
+    "free_memory_bytes": 159219712,
+    "inactive_memory_bytes": 1225261056,
+    "active_memory_bytes": 1659486208,
+    "iogpu_wired_limit_bytes": 27917287424,
+    "omlx_wired_limit_request_bytes": 32212254720,
+    "memory_guard_preview": {
+      "safe": {
+        "reserve_bytes": 6871947673,
+        "free_bytes": 155107328,
+        "inactive_bytes": 1319485440,
+        "other_apps_bytes": 0,
+        "static_bytes": 27487790695,
+        "dynamic_bytes": 1,
+        "metal_cap_bytes": 29908505016,
+        "ceiling_bytes": 1,
+        "binding": "dynamic"
+      },
+      "balanced": {
+        "reserve_bytes": 3221225472,
+        "free_bytes": 155107328,
+        "inactive_bytes": 1319485440,
+        "other_apps_bytes": 0,
+        "static_bytes": 31138512896,
+        "dynamic_bytes": 2606895544,
+        "metal_cap_bytes": 29908505016,
+        "ceiling_bytes": 2606895544,
+        "binding": "dynamic"
+      },
+      "aggressive": {
+        "reserve_bytes": 1610612736,
+        "free_bytes": 155107328,
+        "inactive_bytes": 1319485440,
+        "other_apps_bytes": 0,
+        "static_bytes": 32749125632,
+        "dynamic_bytes": 4217508280,
+        "metal_cap_bytes": 29908505016,
+        "ceiling_bytes": 4217508280,
+        "binding": "dynamic"
+      },
+      "custom": {
+        "reserve_bytes": 2147483648,
+        "free_bytes": 0,
+        "inactive_bytes": 0,
+        "other_apps_bytes": 0,
+        "static_bytes": 32212254720,
+        "dynamic_bytes": 0,
+        "metal_cap_bytes": 29908505016,
+        "ceiling_bytes": 29908505016,
+        "binding": "metal_cap"
+      }
+    },
+    "ssd_total_bytes": 994662584320,
+    "ssd_total": "926.35 GB"
+  },
+  "note": "read-only automatic-tier preview while mapped model is serving under fixed25GiB"
+}

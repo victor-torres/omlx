@@ -1,0 +1,50 @@
+{
+  "hardware": "hw.memsize: 34359738368\nhw.model: Mac14,5\niogpu.wired_limit_mb: 26624\n",
+  "os": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0\nBuildVersion:\t\t26A428\n",
+  "packages": {
+    "mlx": "0.32.4",
+    "mlx-metal": "0.32.4",
+    "mlx-lm": "0.31.4.dev132+g94cdcae13",
+    "mlx-vlm": "0.7.8",
+    "transformers": "5.17.0",
+    "numpy": "2.3.5",
+    "omlx": "0.7.1rc1"
+  },
+  "environment": {
+    "MLX_METAL_RESIDENCY_REFRESH_INTERVAL_MS": null,
+    "MLX_METAL_FAST_SYNCH": null,
+    "MLX_ENABLE_TF32": null
+  },
+  "upstream_main": "165be1ff5933a020f2f5a7544e1e95a2797f777f",
+  "guard": "custom 25GiB, identical in both modes",
+  "keep_warm_interval": 0,
+  "cache": "--no-cache",
+  "quant": "existing Ornith1.5-35B-A3B-oQ4e-fp16; MTP off, TurboQuant off for primary A/B",
+  "sampling": "greedy temperature0, thinkingFalse, max_tokens128; 1055 or8223 actual prompt tokens",
+  "model_original_files": "never modified",
+  "desktop": "existing apps left open, substantial initial compressed/swap state; uncontrolled background I/O",
+  "dependency_vcs": {
+    "mlx-lm": {
+      "url": "https://github.com/ml-explore/mlx-lm",
+      "vcs_info": {
+        "vcs": "git",
+        "commit_id": "94cdcae13b266c337bcaca09b97b9c5a9c0e2cde",
+        "requested_revision": "94cdcae13b266c337bcaca09b97b9c5a9c0e2cde"
+      }
+    },
+    "mlx-vlm": {
+      "url": "https://github.com/Blaizzy/mlx-vlm",
+      "vcs_info": {
+        "vcs": "git",
+        "commit_id": "9790231827a890eade1a626643a6bc94a1317c72",
+        "requested_revision": "9790231827a890eade1a626643a6bc94a1317c72"
+      }
+    }
+  },
+  "published_head": "9f3723391fde1aec197c0fd7398d6c93e71da09b",
+  "primary_revision": "uncommitted exploration after merge4749ad2e; earlier scoped core hook",
+  "final_extras_revision": "0c4dd11737f20e972ae5d772ad47be0d05a01035",
+  "verified_pairs_revision": "9f3723391fde1aec197c0fd7398d6c93e71da09b",
+  "primary_filter": "model == 'Ornith-35B' and t >= 1792341740",
+  "source_coverage": "Final head adds weak-exporter physical residency accounting; Custom fixed-cap numerical path is unchanged. Verified pairs use final head and clean main."
+}

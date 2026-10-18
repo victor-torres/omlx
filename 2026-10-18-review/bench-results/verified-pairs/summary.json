@@ -1,0 +1,186 @@
+{
+  "main": {
+    "load_short": {
+      "wall_s": {
+        "median": 58.47794120805338,
+        "min": 58.45939208287746,
+        "max": 63.960688916035,
+        "n": 3
+      },
+      "model_load_duration": {
+        "median": 48.59,
+        "min": 46.12,
+        "max": 49.75,
+        "n": 3
+      },
+      "time_to_first_token": {
+        "median": 8.15,
+        "min": 5.33,
+        "max": 9.9,
+        "n": 3
+      },
+      "generation_tokens_per_second": {
+        "median": 29.99,
+        "min": 28.33,
+        "max": 32.39,
+        "n": 3
+      },
+      "prompt_tokens_per_second": {
+        "median": 129.51,
+        "min": 106.62,
+        "max": 197.87,
+        "n": 3
+      }
+    },
+    "warm_short": {
+      "wall_s": {
+        "median": 4.901375083019957,
+        "min": 4.270605084020644,
+        "max": 4.992453749990091,
+        "n": 3
+      },
+      "time_to_first_token": {
+        "median": 1.58,
+        "min": 1.44,
+        "max": 1.96,
+        "n": 3
+      },
+      "generation_tokens_per_second": {
+        "median": 42.45,
+        "min": 38.74,
+        "max": 45.73,
+        "n": 3
+      },
+      "prompt_tokens_per_second": {
+        "median": 669.35,
+        "min": 539.16,
+        "max": 732.55,
+        "n": 3
+      }
+    },
+    "warm_8k": {
+      "wall_s": {
+        "median": 17.309965000022203,
+        "min": 16.812111374922097,
+        "max": 18.5344914579764,
+        "n": 3
+      },
+      "time_to_first_token": {
+        "median": 13.81,
+        "min": 12.8,
+        "max": 14.29,
+        "n": 3
+      },
+      "generation_tokens_per_second": {
+        "median": 43.25,
+        "min": 22.61,
+        "max": 43.48,
+        "n": 3
+      },
+      "prompt_tokens_per_second": {
+        "median": 595.36,
+        "min": 575.24,
+        "max": 642.25,
+        "n": 3
+      }
+    },
+    "active_system_wired_gb": {
+      "median": 27.7782528,
+      "min": 24.192729088,
+      "max": 28.943761408,
+      "n": 60
+    }
+  },
+  "mapped": {
+    "load_short": {
+      "wall_s": {
+        "median": 20.658255292102695,
+        "min": 11.411812374833971,
+        "max": 21.579719834029675,
+        "n": 3
+      },
+      "model_load_duration": {
+        "median": 13.86,
+        "min": 8.07,
+        "max": 17.52,
+        "n": 3
+      },
+      "time_to_first_token": {
+        "median": 1.52,
+        "min": 1.45,
+        "max": 4.14,
+        "n": 3
+      },
+      "generation_tokens_per_second": {
+        "median": 49.52,
+        "min": 48.96,
+        "max": 70.71,
+        "n": 3
+      },
+      "prompt_tokens_per_second": {
+        "median": 693.8,
+        "min": 254.82,
+        "max": 728.46,
+        "n": 3
+      }
+    },
+    "warm_short": {
+      "wall_s": {
+        "median": 3.763517125044018,
+        "min": 3.423784584039822,
+        "max": 3.814257999882102,
+        "n": 3
+      },
+      "time_to_first_token": {
+        "median": 1.77,
+        "min": 1.46,
+        "max": 1.8,
+        "n": 3
+      },
+      "generation_tokens_per_second": {
+        "median": 65.64,
+        "min": 63.37,
+        "max": 65.9,
+        "n": 3
+      },
+      "prompt_tokens_per_second": {
+        "median": 596.51,
+        "min": 584.76,
+        "max": 723.94,
+        "n": 3
+      }
+    },
+    "warm_8k": {
+      "wall_s": {
+        "median": 13.785289874998853,
+        "min": 13.627583167050034,
+        "max": 14.131747249979526,
+        "n": 3
+      },
+      "time_to_first_token": {
+        "median": 11.61,
+        "min": 11.4,
+        "max": 11.97,
+        "n": 3
+      },
+      "generation_tokens_per_second": {
+        "median": 60.66,
+        "min": 59.13,
+        "max": 60.97,
+        "n": 3
+      },
+      "prompt_tokens_per_second": {
+        "median": 708.32,
+        "min": 686.72,
+        "max": 721.3,
+        "n": 3
+      }
+    },
+    "active_system_wired_gb": {
+      "median": 27.759157248,
+      "min": 24.170020864,
+      "max": 29.334781952,
+      "n": 40
+    }
+  }
+}

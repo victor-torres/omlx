@@ -1,0 +1,120 @@
+[
+  {
+    "phase": "bootstrap_custom",
+    "response": {
+      "wall_s": 13.779824916971847,
+      "id": "chatcmpl-2c60b567",
+      "object": "chat.completion",
+      "created": 1792344738,
+      "model": "Ornith-35B",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "# How a Library Catalog Works\n\nA library catalog is a structured database that allows patrons to search for and locate library materials. Here are twenty detailed examples illustrating how it works:\n\n1. **Bibliographic Records**: When a book enters a library, it receives a unique bibliographic record containing metadata like title, author, publisher, and publication date. For example, searching for \"To Kill a Mockingbird\" retrieves the record with details like Harper Lee as author and J.B. Lippincott as publisher.\n\n2. **Authority Control**: Catalogers use authority files to standardize names and subjects. This ensures that \""
+          },
+          "finish_reason": "length"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 128,
+        "total_tokens": 154,
+        "input_tokens": 26,
+        "output_tokens": 128,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "model_load_duration": 9.77,
+        "time_to_first_token": 0.93,
+        "total_time": 3.99,
+        "prompt_eval_duration": 0.93,
+        "generation_duration": 3.06,
+        "prompt_tokens_per_second": 27.86,
+        "generation_tokens_per_second": 41.83
+      }
+    }
+  },
+  {
+    "phase": "automatic_active",
+    "response": {
+      "wall_s": 6.979867583140731,
+      "id": "chatcmpl-c57b2fdd",
+      "object": "chat.completion",
+      "created": 1792344745,
+      "model": "Ornith-35B",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "# How a Library Catalog Works\n\nA library catalog is a structured database that allows patrons to search for and locate library materials. Here are twenty detailed examples illustrating how it works:\n\n1. **Bibliographic Records**: When a book enters a library, it receives a unique bibliographic record containing metadata like title, author, publisher, and publication date. For example, searching for \"To Kill a Mockingbird\" retrieves the record with details like Harper Lee as author and J.B. Lippincott as publisher.\n\n2. **Authority Control**: Catalogers use authority files to standardize names and subjects. This ensures that \"Mark Twain\" and \"Samuel Clemens\" both point to the same authorized form, preventing duplicate records and helping users find all works by one creator.\n\n3. **Catalog Search Interface**: Users access the catalog through an OPAC (Online Public Access Catalog), which provides search boxes for keyword, title, author, subject, and ISBN searches.\n\n4. **Boolean Logic Searching**: The catalog supports Boolean operators. Searching \"war AND peace NOT Tolstoy\" would return materials about war and peace while excluding Tolstoy's novel.\n\n5. **Keyword vs. Field Searching**: A keyword search scans all fields of a"
+          },
+          "finish_reason": "length"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 26,
+        "completion_tokens": 256,
+        "total_tokens": 282,
+        "input_tokens": 26,
+        "output_tokens": 256,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "time_to_first_token": 0.82,
+        "total_time": 4.95,
+        "prompt_eval_duration": 0.82,
+        "generation_duration": 4.13,
+        "prompt_tokens_per_second": 31.71,
+        "generation_tokens_per_second": 62.01
+      }
+    }
+  },
+  {
+    "phase": "automatic_resume",
+    "response": {
+      "wall_s": 0.911138541996479,
+      "id": "chatcmpl-502dde9c",
+      "object": "chat.completion",
+      "created": 1792344755,
+      "model": "Ornith-35B",
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "Paris."
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 22,
+        "completion_tokens": 2,
+        "total_tokens": 24,
+        "input_tokens": 22,
+        "output_tokens": 2,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "time_to_first_token": 0.86,
+        "total_time": 0.89,
+        "prompt_eval_duration": 0.86,
+        "generation_duration": 0.03,
+        "prompt_tokens_per_second": 25.58,
+        "generation_tokens_per_second": 64.86
+      }
+    }
+  }
+]

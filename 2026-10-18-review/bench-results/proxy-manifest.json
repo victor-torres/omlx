@@ -1,0 +1,20 @@
+{
+  "source": "$MODEL_DIR",
+  "shards": [
+    {
+      "file": "model-00019-of-00022.safetensors",
+      "bytes": 1056967556,
+      "payload_sha256": "06c1e850631b686a473483d5c54e499516c143a99bc8d597ab11072a7b7204ad",
+      "source_mtime_ns": 1791992885114205279
+    },
+    {
+      "file": "model-00001-of-00022.safetensors",
+      "bytes": 1008862244,
+      "payload_sha256": "5ec434064eb529944dfc891d6f4fb286589d157d9249c85941f92691e431ea6d",
+      "source_mtime_ns": 1791992655687362201
+    }
+  ],
+  "start": 1792342413.8487282,
+  "build_s": 2.9645733339712024,
+  "extra_bytes": 2065829800
+}
