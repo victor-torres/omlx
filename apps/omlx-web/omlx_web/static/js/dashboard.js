@@ -47,6 +47,7 @@
         'qwen35_ane_prefill_cpu_gdn_fraction',
         'qwen35_ane_prefill_cpu_threads',
         'qwen35_ane_prefill_cpu_shared_resource',
+        'mapped_weights_enabled',
         'moe_expert_offload_enabled',
         'moe_expert_offload_resident_fraction',
         'a8_prefill_enabled',
@@ -297,6 +298,7 @@
                 qwen35_ane_prefill_cpu_gdn_fraction: 0,
                 qwen35_ane_prefill_cpu_threads: 8,
                 qwen35_ane_prefill_cpu_shared_resource: true,
+                mapped_weights_enabled: false,
                 moe_expert_offload_enabled: false,
                 moe_expert_offload_resident_fraction: 0.25,
                 a8_prefill_enabled: false,
@@ -2193,6 +2195,7 @@
                         ? 'turboquant' : (s.turboquant_kv_scheme || 'turboquant'),
                     turboquant_kv_bits: isDiffusion || model?.is_paroquant
                         ? 4 : (s.turboquant_kv_bits || 4),
+                    mapped_weights_enabled: !isDiffusion && !!s.mapped_weights_enabled,
                     moe_expert_offload_enabled: !isDiffusion && model?.moe_expert_offload_supported === true && !!s.moe_expert_offload_enabled,
                     moe_expert_offload_resident_fraction: s.moe_expert_offload_resident_fraction ?? 0.25,
                     moe_expert_offload_resident_percent: Number(((s.moe_expert_offload_resident_fraction ?? 0.25) * 100).toPrecision(15)),
@@ -3273,6 +3276,7 @@
                         : ms.turboquant_kv_scheme === 'affine4' ? 4
                         : ms.turboquant_kv_enabled ? (parseFloat(ms.turboquant_kv_bits) || 4)
                         : 4,
+                    mapped_weights_enabled: !isDiffusion && !!ms.mapped_weights_enabled,
                     moe_expert_offload_enabled: !isDiffusion && this.selectedModel?.moe_expert_offload_supported === true && !!ms.moe_expert_offload_enabled,
                     moe_expert_offload_resident_fraction: ms.moe_expert_offload_resident_fraction ?? 0.25,
                     a8_prefill_enabled: !!ms.a8_prefill_enabled,
@@ -4739,6 +4743,22 @@
                 agg.ssd_hot_rate = (sh + sd) > 0 ? sh / (sh + sd) : 0;
 
                 return agg;
+            },
+
+            // Share of the checkpoint the mapped loader can import without a
+            // copy, from safetensors headers. Below 90% the setting mostly copies.
+            mappedWeightsNote(coverage, texts) {
+                if (!coverage || !(coverage.total_bytes > 0)) return null;
+                const percent = Math.floor(100 * coverage.mappable_bytes / coverage.total_bytes);
+                const low = percent < 90;
+                const template = texts ? (low ? texts.low : texts.ok) : '';
+                return {
+                    low,
+                    text: template
+                        .replace('{percent}', percent)
+                        .replace('{mappable}', this.formatByteCount(coverage.mappable_bytes))
+                        .replace('{total}', this.formatByteCount(coverage.total_bytes)),
+                };
             },
 
             formatSizeBytes(bytes) {

@@ -261,6 +261,15 @@ class BaseEngine(ABC):
         """Whether chat outputs can carry per-token logprobs."""
         return False
 
+    def _mapped_weight_loading(self):
+        """Scope the optional loader to this engine's synchronous load only."""
+        from ..utils.mapped_weights import mapped_loading
+
+        return mapped_loading(
+            self._model_name,
+            enabled=getattr(self._model_settings, "mapped_weights_enabled", False),
+        )
+
     def _generation_prompt_text(
         self,
         chat_template_kwargs: Optional[Dict[str, Any]],

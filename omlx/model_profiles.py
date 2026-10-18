@@ -69,6 +69,7 @@ MODEL_SPECIFIC_PROFILE_FIELDS = (
     "a8_prefill_min_tokens",
     "moe_expert_offload_enabled",
     "moe_expert_offload_resident_fraction",
+    "mapped_weights_enabled",
     "dflash_enabled",
     "dflash_draft_model",
     "dflash_draft_quant_enabled",

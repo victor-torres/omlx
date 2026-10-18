@@ -575,6 +575,7 @@ def maybe_apply_pre_load_patches(
                     key: getattr(model_settings, key, False)
                     for key in (
                         "moe_expert_offload_enabled",
+                        "mapped_weights_enabled",
                         "mtp_enabled",
                         "vlm_mtp_enabled",
                         "dflash_enabled",

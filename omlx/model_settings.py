@@ -61,6 +61,13 @@ def validate_moe_expert_offload(settings: dict, model_type: str | None = None) -
             "MoE expert offload cannot be combined with the float16 activation "
             "recast; disable one of them first."
         )
+    # Offload reads experts into its own resident slots; there is nothing
+    # left for a file mapping to serve.
+    if settings.get("mapped_weights_enabled"):
+        raise ValueError(
+            "MoE expert offload cannot be combined with mapped weights; "
+            "disable one of them."
+        )
     # VLM MTP and DFlash have no offload-aware draft path at all.
     if any(settings.get(key) for key in ("vlm_mtp_enabled", "dflash_enabled")):
         raise ValueError(
@@ -314,6 +321,10 @@ class ModelSettings:
             models larger than memory; costs decode speed). Requires reload.
         moe_expert_offload_resident_fraction: Fraction of each layer's experts
             kept resident (0 < f <= 1, default 0.25).
+        mapped_weights_enabled: Load aligned weights as read-only file views.
+            Reduces copying at load and makes idle pages reclaimable without
+            swap. Active inference still wires the weights. Misaligned tensors
+            are copied, and checkpoint files are never modified. Requires reload.
         specprefill_enabled: Enable SpecPrefill (experimental sparse prefill for MoE).
         specprefill_draft_model: Path to draft model for SpecPrefill.
         specprefill_keep_pct: Keep rate for SpecPrefill (0.1–0.5).
@@ -466,6 +477,9 @@ class ModelSettings:
     # MoE expert offload (stream non-resident experts from the checkpoint)
     moe_expert_offload_enabled: bool = False
     moe_expert_offload_resident_fraction: float = 0.25  # 0 < fraction <= 1
+
+    # Mapped weights (read-only file views; GPU use still wires the buffers)
+    mapped_weights_enabled: bool = False
 
     # SpecPrefill (experimental: attention-based sparse prefill for MoE models)
     specprefill_enabled: bool = False

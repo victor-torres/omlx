@@ -365,6 +365,7 @@ _UPLOADED_SETTING_FIELDS = (
     "a8_prefill_min_tokens",
     "moe_expert_offload_enabled",
     "moe_expert_offload_resident_fraction",
+    "mapped_weights_enabled",
     "specprefill_enabled",
     "specprefill_draft_model",
     "specprefill_keep_pct",
