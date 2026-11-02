@@ -325,6 +325,11 @@ class ModelSettings:
             Reduces copying at load and makes idle pages reclaimable without
             swap. Active inference still wires the weights. Misaligned tensors
             are copied, and checkpoint files are never modified. Requires reload.
+        lazy_vision_enabled: Keep a VLM's vision tower out of memory until a
+            request carries an image, then load it from a snapshot written at
+            model load. Text-only requests never load it. Requires reload.
+        lazy_vision_idle_seconds: Seconds without images before the vision
+            tower is released again (default 60).
         specprefill_enabled: Enable SpecPrefill (experimental sparse prefill for MoE).
         specprefill_draft_model: Path to draft model for SpecPrefill.
         specprefill_keep_pct: Keep rate for SpecPrefill (0.1–0.5).
@@ -481,6 +486,10 @@ class ModelSettings:
     # Mapped weights (read-only file views; GPU use still wires the buffers)
     mapped_weights_enabled: bool = False
 
+    # Lazy vision (VLM tower kept in a snapshot until an image arrives)
+    lazy_vision_enabled: bool = False
+    lazy_vision_idle_seconds: int = 60
+
     # SpecPrefill (experimental: attention-based sparse prefill for MoE models)
     specprefill_enabled: bool = False
     specprefill_draft_model: Optional[str] = (
@@ -568,6 +577,14 @@ class ModelSettings:
             self.dflash_verify_mode = "adaptive"
         if self.a8_prefill_enabled and self.a8_prefill_min_tokens < 1:
             raise ValueError("a8_prefill_min_tokens must be at least 1")
+        if self.lazy_vision_enabled and (
+            isinstance(self.lazy_vision_idle_seconds, bool)
+            or not isinstance(self.lazy_vision_idle_seconds, int)
+            or self.lazy_vision_idle_seconds < 1
+        ):
+            raise ValueError(
+                "lazy_vision_idle_seconds must be a whole number of at least 1"
+            )
         # Both accelerate the same Qwen3.5 prefill projections by wrapping
         # Qwen3_5MLP.__call__, so enabling both leaves whichever patched last
         # in charge and the other silently inert -- with different numerics

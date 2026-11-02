@@ -70,6 +70,8 @@ MODEL_SPECIFIC_PROFILE_FIELDS = (
     "moe_expert_offload_enabled",
     "moe_expert_offload_resident_fraction",
     "mapped_weights_enabled",
+    "lazy_vision_enabled",
+    "lazy_vision_idle_seconds",
     "dflash_enabled",
     "dflash_draft_model",
     "dflash_draft_quant_enabled",

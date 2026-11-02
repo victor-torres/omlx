@@ -1,4 +1,7 @@
 {
+  "modal.model_settings.lazy_vision_label": "Load vision on demand (experimental)",
+  "modal.model_settings.lazy_vision_help": "Keep the vision weights out of memory until a request carries an image, then load them from a local copy written at model load. Saves the vision tower's memory on text-only use; the first image after a pause waits for the load. Requires reload.",
+  "modal.model_settings.lazy_vision_idle_label": "Release after idle (seconds)",
   "modal.model_settings.mapped_weights_label": "Mapped weights (experimental)",
   "modal.model_settings.mapped_weights_help": "Load weights from read-only file views. Idle memory can be reclaimed without swap; active generation still needs the full model. Misaligned tensors are copied. Requires reload. Incompatible with expert offload.",
   "modal.model_settings.mapped_weights_coverage": "{mappable} of {total} ({percent}%) can be mapped without copying.",
