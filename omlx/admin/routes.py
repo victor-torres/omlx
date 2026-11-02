@@ -429,6 +429,9 @@ class ModelSettingsRequest(BaseModel):
     moe_expert_offload_resident_fraction: float | None = None
     # Mapped weights (zero-copy from the checkpoint files)
     mapped_weights_enabled: bool | None = None
+    # Lazy vision (load the VLM vision tower on the first image)
+    lazy_vision_enabled: bool | None = None
+    lazy_vision_idle_seconds: int | None = None
     # SpecPrefill (experimental)
     specprefill_enabled: bool | None = None
     specprefill_draft_model: str | None = None
@@ -1067,6 +1070,7 @@ def _sanitize_diffusion_settings_dict(settings: dict) -> None:
     settings["moe_expert_offload_enabled"] = False
     settings["moe_expert_offload_resident_fraction"] = 0.25
     settings["mapped_weights_enabled"] = False
+    settings["lazy_vision_enabled"] = False
     settings["specprefill_enabled"] = False
     settings["external_engine"] = None
     settings["dflash_enabled"] = False
@@ -1142,6 +1146,7 @@ def _sanitize_diffusion_model_settings(settings) -> None:
     settings.moe_expert_offload_enabled = False
     settings.moe_expert_offload_resident_fraction = 0.25
     settings.mapped_weights_enabled = False
+    settings.lazy_vision_enabled = False
     settings.specprefill_enabled = False
     settings.specprefill_draft_model = None
     settings.specprefill_keep_pct = None
@@ -3218,6 +3223,14 @@ async def update_model_settings(
         )
     if "mapped_weights_enabled" in sent:
         current_settings.mapped_weights_enabled = bool(request.mapped_weights_enabled)
+    if "lazy_vision_enabled" in sent:
+        current_settings.lazy_vision_enabled = bool(request.lazy_vision_enabled)
+    if "lazy_vision_idle_seconds" in sent:
+        current_settings.lazy_vision_idle_seconds = (
+            60
+            if request.lazy_vision_idle_seconds is None
+            else request.lazy_vision_idle_seconds
+        )
     # SpecPrefill settings
     if "specprefill_enabled" in sent:
         current_settings.specprefill_enabled = request.specprefill_enabled or False

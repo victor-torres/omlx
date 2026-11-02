@@ -1411,6 +1411,11 @@ class EnginePool:
         moe_offload_active = bool(data.get("moe_expert_offload_enabled", False))
         add("moe_expert_offload_enabled", moe_offload_active)
         add("mapped_weights_enabled", bool(data.get("mapped_weights_enabled", False)))
+        # The vision tower is moved to its snapshot at load.
+        lazy_vision_active = bool(data.get("lazy_vision_enabled", False))
+        add("lazy_vision_enabled", lazy_vision_active)
+        if lazy_vision_active:
+            add("lazy_vision_idle_seconds", data.get("lazy_vision_idle_seconds", 60))
         if moe_offload_active:
             add(
                 "moe_expert_offload_resident_fraction",

@@ -33,6 +33,8 @@ import inspect
 import itertools
 import json
 import logging
+import os
+import tempfile
 import threading
 from collections.abc import AsyncIterator
 from pathlib import Path
@@ -1735,6 +1737,9 @@ class VLMBatchedEngine(BaseEngine):
         self._grammar_compiler_init_attempted = False
         self._vision_cache = None
         self._vision_cache_enabled = True
+        # Set when lazy_vision_enabled moved the vision tower to a snapshot.
+        self._lazy_vision = None
+        self._lazy_vision_task: asyncio.Task | None = None
         # Holds the loaded gemma4_assistant drafter when vlm_mtp_enabled.
         # Phase 2A: attached but not yet wired into the decode path.
         self._vlm_mtp_drafter: Any | None = None
@@ -2454,6 +2459,11 @@ class VLMBatchedEngine(BaseEngine):
             self._vision_cache = None
             self._vision_cache_enabled = False
 
+        if not self.is_diffusion_model and getattr(
+            self._model_settings, "lazy_vision_enabled", False
+        ):
+            await self._enable_lazy_vision(loop)
+
         # Extract tokenizer from processor with deep-copy for thread safety.
         # The processor keeps the original tokenizer for executor-thread work
         # (_prepare_vision_inputs / prepare_inputs), while this deep copy is
@@ -2907,6 +2917,53 @@ class VLMBatchedEngine(BaseEngine):
     def dflash_drafter(self) -> Any | None:
         return self._dflash_drafter
 
+    async def _enable_lazy_vision(self, loop: asyncio.AbstractEventLoop) -> None:
+        """Move the vision tower to a snapshot until the first image needs it."""
+        from ..engine_core import get_mlx_executor
+        from .lazy_vision import LazyVisionTower
+
+        tower = getattr(self._vlm_model, "vision_tower", None)
+        if tower is None:
+            logger.info(
+                "Lazy vision: %s has no vision_tower; keeping it eager",
+                self._model_name,
+            )
+            return
+        cache_dir = getattr(self._scheduler_config, "paged_ssd_cache_dir", None)
+        root = (
+            Path(cache_dir) / "lazy_vision"
+            if cache_dir
+            else Path(tempfile.gettempdir()) / "omlx-lazy-vision"
+        )
+        # One file per process and model: two servers can share a cache dir.
+        name = hashlib.sha256(str(self._model_name).encode()).hexdigest()[:16]
+        lazy = LazyVisionTower(
+            tower,
+            root / f"{name}-{os.getpid()}.safetensors",
+            getattr(self._model_settings, "lazy_vision_idle_seconds", 60),
+        )
+        try:
+            await loop.run_in_executor(get_mlx_executor(), lazy.strip)
+        except Exception:
+            logger.warning("Lazy vision not enabled", exc_info=True)
+            lazy.close()
+            return
+        self._lazy_vision = lazy
+        self._lazy_vision_task = asyncio.create_task(self._lazy_vision_reaper())
+
+    async def _lazy_vision_reaper(self) -> None:
+        from ..engine_core import get_mlx_executor
+
+        lazy = self._lazy_vision
+        loop = asyncio.get_running_loop()
+        while True:
+            await asyncio.sleep(min(lazy.idle_seconds, 15))
+            if lazy.loaded:
+                try:
+                    await loop.run_in_executor(get_mlx_executor(), lazy.release_if_idle)
+                except Exception:
+                    logger.warning("Lazy vision release failed", exc_info=True)
+
     async def stop(self) -> None:
         """Stop the engine and cleanup resources."""
         cancelled = False
@@ -2917,6 +2974,13 @@ class VLMBatchedEngine(BaseEngine):
 
         if engine:
             await engine.stop()
+
+        if self._lazy_vision_task is not None:
+            self._lazy_vision_task.cancel()
+            self._lazy_vision_task = None
+        if self._lazy_vision is not None:
+            self._lazy_vision.close()
+            self._lazy_vision = None
 
         if self._vision_cache is not None:
             try:

@@ -861,6 +861,33 @@
                             </button>
                         </div>
 
+                        <!-- Lazy vision -->
+                        <template x-if="selectedModel?.model_type === 'vlm'">
+                            <div class="px-4 py-3.5 space-y-3">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div>
+                                        <div class="text-sm font-medium text-neutral-900">{{ t('modal.model_settings.lazy_vision_label') }}</div>
+                                        <p class="text-xs text-neutral-500 mt-1">{{ t('modal.model_settings.lazy_vision_help') }}</p>
+                                    </div>
+                                    <button type="button" role="switch"
+                                            @click="modelSettings.lazy_vision_enabled = !modelSettings.lazy_vision_enabled"
+                                            :aria-checked="modelSettings.lazy_vision_enabled ? 'true' : 'false'"
+                                            aria-label="{{ t('modal.model_settings.lazy_vision_label') }}"
+                                            :class="modelSettings.lazy_vision_enabled ? 'bg-black' : 'bg-neutral-200'"
+                                            class="relative flex-shrink-0 w-11 h-6 mt-0.5 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                                        <span :class="modelSettings.lazy_vision_enabled ? 'translate-x-5' : 'translate-x-0'"
+                                              class="block w-5 h-5 bg-white rounded-full shadow-sm transform transition-transform duration-300 absolute top-0.5 left-0.5"></span>
+                                    </button>
+                                </div>
+                                <div x-show="modelSettings.lazy_vision_enabled" class="flex items-center justify-between gap-3">
+                                    <label for="lazy-vision-idle" class="text-xs text-neutral-600">{{ t('modal.model_settings.lazy_vision_idle_label') }}</label>
+                                    <input id="lazy-vision-idle" type="number" min="1" step="1"
+                                           x-model.number="modelSettings.lazy_vision_idle_seconds"
+                                           class="w-24 px-2 py-1 text-sm border border-neutral-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-black">
+                                </div>
+                            </div>
+                        </template>
+
                         <!-- MoE Expert Offload -->
                         <template x-if="selectedModel?.moe_expert_offload_supported === true">
                             <div class="px-4 py-3.5 space-y-3">

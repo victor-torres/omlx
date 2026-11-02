@@ -366,6 +366,8 @@ _UPLOADED_SETTING_FIELDS = (
     "moe_expert_offload_enabled",
     "moe_expert_offload_resident_fraction",
     "mapped_weights_enabled",
+    "lazy_vision_enabled",
+    "lazy_vision_idle_seconds",
     "specprefill_enabled",
     "specprefill_draft_model",
     "specprefill_keep_pct",

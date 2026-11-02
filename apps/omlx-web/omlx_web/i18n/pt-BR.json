@@ -1,4 +1,7 @@
 {
+  "modal.model_settings.lazy_vision_label": "Visão sob demanda (experimental)",
+  "modal.model_settings.lazy_vision_help": "Mantém os pesos de visão fora da memória até um pedido trazer imagem, e então os carrega de uma cópia local gravada ao carregar o modelo. Economiza a memória da torre de visão no uso só com texto; a primeira imagem depois de uma pausa espera o carregamento. Requer recarga.",
+  "modal.model_settings.lazy_vision_idle_label": "Liberar depois de ociosa (segundos)",
   "modal.model_settings.mapped_weights_label": "Pesos mapeados (experimental)",
   "modal.model_settings.mapped_weights_help": "Carrega pesos de arquivos sem cópia quando alinhados. A memória ociosa pode ser recuperada sem swap; a geração ainda precisa do modelo inteiro. Tensores desalinhados são copiados. Requer recarga. Incompatível com offload de experts.",
   "modal.model_settings.mapped_weights_coverage": "{mappable} de {total} ({percent}%) podem ser mapeados sem cópia.",
